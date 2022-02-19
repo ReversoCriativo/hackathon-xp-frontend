@@ -4,6 +4,9 @@ export const theme = extendTheme({
   colors: {
     black: '#000000',
     text: '#ffffff',
+    icons: {
+      primary: '#605F62'
+    },
     onBoarding: {
       'background': '#090909'
     },

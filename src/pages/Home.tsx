@@ -1,5 +1,7 @@
 import { Box, Flex, HStack, Heading, Text, Button } from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
 import backgroundImg from '../assets/background-onboard.png'
+import { BasicButton } from '../components/atoms/BasicButton'
 
 export default function Home() {
   return (
@@ -20,15 +22,9 @@ export default function Home() {
             bancos conectados, a plataforma oferece um rol de opções para a
             contratação em um clique.
           </Text>
-          <Button
-            mt='60px'
-            bg='linear-gradient(90deg, #DA3633 -0.1%, #D29922 100%)'
-            _hover={{
-              opacity: 0.7,
-            }}
-          >
-            Começar
-          </Button>
+          <Link to='/login'>
+            <BasicButton mt='60px'>Começar</BasicButton>
+          </Link>
         </Box>
       </Flex>
     </HStack>
