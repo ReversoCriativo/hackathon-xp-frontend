@@ -1,11 +1,11 @@
 import { ChakraProvider } from '@chakra-ui/react';
-import Greetings from './Pages/Greetings';
 import { theme } from './styles/theme';
+import Routes from './routes';
 
 function App() {
   return (
     <ChakraProvider resetCSS theme={theme}>
-      <Greetings />
+      <Routes />
     </ChakraProvider>
   )
 }
