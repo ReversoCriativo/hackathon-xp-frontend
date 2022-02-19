@@ -10,7 +10,7 @@ export default function Routes() {
 	return (
 		<Router>
 			<Switch>
-				<Route path="/" element={Home} />
+				<Route path="/" element={<Home />} />
 			</Switch>
 		</Router>
 	)

@@ -1,7 +1,12 @@
+import { Center, Text } from '@chakra-ui/react'
 import React from 'react'
 
 export default function Home() {
 	return (
-		<div>Developing  ....</div>
+		<Center flex={1}>
+			<Text color={"#ffff"}>
+				Developing...
+			</Text>
+		</Center>
 	)
 }
