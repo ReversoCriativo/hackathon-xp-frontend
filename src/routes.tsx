@@ -4,13 +4,13 @@ import {
   Routes as Switch,
   Route,
 } from "react-router-dom";
-import Greetings from './Pages/Greetings';
+import Home from './Pages/Home';
 
 export default function Routes() {
 	return (
 		<Router>
 			<Switch>
-				<Route path="/" element={Greetings} />
+				<Route path="/" element={Home} />
 			</Switch>
 		</Router>
 	)
