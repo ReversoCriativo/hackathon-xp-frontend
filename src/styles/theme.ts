@@ -2,22 +2,19 @@ import { extendTheme } from '@chakra-ui/react';
 
 export const theme = extendTheme({
   colors: {
-    pGray: {
-      '50': '#F3F2F2',
-      '100': '#DDDCDA',
-      '200': '#C7C5C2',
-      '300': '#B1AFAA',
-      '400': '#9B9892',
-      '500': '#85817A',
-      '600': '#6A6762',
-      '700': '#504E49',
-      '800': '#353431',
-      '900': '#1B1A18',
+    black: '#000000',
+    text: '#ffffff',
+    onBoarding: {
+      'background': '#090909'
     },
+    variants: {
+      'danger': '#DA3633',
+      'alert': '#FFAC00'
+    }
   },
   fonts: {
-    heading: 'Roboto',
-    body: 'Roboto',
+    heading: 'Inter',
+    body: 'Inter',
   },
   components: {
     Text: {
@@ -28,15 +25,15 @@ export const theme = extendTheme({
     },
     Button: {
       defaultProps: {
-        colorScheme: 'orange',
+        colorScheme: 'linear-gradient(90deg, #DA3633 -0.1%, #D29922 100%)',
       },
     },
   },
   styles: {
     global: {
       body: {
-        bg: 'pGray.900',
-        color: 'pGray.50',
+        bg: 'onBoarding.background',
+        color: 'text',
       },
     },
   },
