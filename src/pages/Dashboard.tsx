@@ -6,15 +6,20 @@ import {
   DrawerBody,
   DrawerContent,
   DrawerOverlay,
+  Flex,
   Text,
   useDisclosure,
 } from '@chakra-ui/react'
-import { useEffect } from 'react'
+import { range } from 'lodash'
+import { useEffect, useState } from 'react'
+import BankCard from '../components/atoms/BankCard'
 import { BasicButton } from '../components/atoms/BasicButton'
 import { Header } from '../components/molecules/Header'
 
 export default function Dashboard() {
   const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const [isCardOn, setIsCardOn ] = useState(false);
 
   useEffect(() => {
     onOpen()
@@ -23,7 +28,11 @@ export default function Dashboard() {
   return (
     <Container maxW='container.lx'>
       <Header />
-      <Button onClick={onOpen}>Abrir o Drawer</Button>
+      <Flex gap={5} alignItems={'center'} justifyContent='center'>
+        {range(0, 4).map(() => (
+          <BankCard on={isCardOn} value={1504.94} onToggle={() => setIsCardOn(!isCardOn)} />
+        ))}
+      </Flex>
       <Drawer
         placement={'left'}
         onClose={onClose}
