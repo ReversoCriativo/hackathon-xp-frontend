@@ -3,6 +3,7 @@ import {
   Routes as Switch,
   Route,
 } from 'react-router-dom'
+import { InvestmentsProvider } from '../contexts/Investments'
 import { UserProvider } from '../contexts/UserContext'
 import Home from '../pages/Home'
 import Login from '../pages/Login'
@@ -20,7 +21,9 @@ export default function Routes() {
             path='/dashboard'
             element={
               <UserProvider>
-                <Questionns />
+                <InvestmentsProvider>
+                  <Questionns />
+                </InvestmentsProvider>
               </UserProvider>
             }
           />

@@ -18,13 +18,19 @@ import BankCard from '../components/atoms/BankCard'
 import { BasicButton } from '../components/atoms/BasicButton'
 import { Header } from '../components/molecules/Header'
 import UserBankList from '../components/organisms/UserBankList'
+import { useInvestments } from '../hooks/useInvestments'
 import { useUser } from '../hooks/useUser'
 
 export default function Questions() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [isCardOn, setIsCardOn] = useState(true)
 
-  const { isLoading, user } = useUser()
+  const { isLoading, user } = useUser();
+
+  const { getProducts, products } = useInvestments();
+
+
+  console.log("!)))) ALL ", products);
 
   const formatName = useCallback((text: string) => {
     return (
@@ -35,6 +41,7 @@ export default function Questions() {
 
   useEffect(() => {
     onOpen()
+    getProducts();
   }, [])
 
   return (
