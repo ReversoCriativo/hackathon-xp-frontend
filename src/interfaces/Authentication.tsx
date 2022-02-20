@@ -4,5 +4,7 @@ export interface AuthProviderProps {
   children: ReactNode
 }
 export interface AuthContextProps {
-  authenticated: Boolean
+  authenticated: boolean
+  isLoading: boolean
+  login: (name: string) => Promise<boolean>
 }
