@@ -9,6 +9,8 @@ const api = axios.create({
  * @todo: add authorization header
  */
 api.interceptors.request.use((config) => {
+	if (!config?.headers?.private) return config
+	config.headers = { ...config.headers, Authorization: `Bearer ${localStorage.getItem('accessToken')}` }
 	return config;
 });
 

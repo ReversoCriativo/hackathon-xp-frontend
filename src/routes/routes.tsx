@@ -6,6 +6,7 @@ import {
 import Home from '../pages/Home'
 import Login from '../pages/Login'
 import Dashboard from '../pages/Dashboard'
+import ProtectedRoute from './ProtectedRoute'
 
 export default function Routes() {
   return (
@@ -13,7 +14,9 @@ export default function Routes() {
       <Switch>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='' element={<ProtectedRoute />}>
+          <Route path='/dashboard' element={<Dashboard />} />
+        </Route>
       </Switch>
     </Router>
   )

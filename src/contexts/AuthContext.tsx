@@ -20,6 +20,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
         user: name.toUpperCase(),
       })
       if (data) {
+        const { accessToken } = data
+        localStorage.setItem('accessToken', accessToken)
         setAuthenticated(true)
         return true
       }
@@ -33,8 +35,20 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   }
 
+  async function logout() {
+    setIsLoading(true)
+    try {
+      localStorage.removeItem('accessToken')
+      setIsLoading(false)
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   return (
-    <AuthContext.Provider value={{ authenticated, login, isLoading }}>
+    <AuthContext.Provider value={{ authenticated, login, isLoading, logout }}>
       {children}
     </AuthContext.Provider>
   )
