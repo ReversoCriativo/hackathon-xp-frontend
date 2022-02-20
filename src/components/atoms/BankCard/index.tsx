@@ -1,4 +1,4 @@
-import { Box, Button, Fade, Flex, Icon, Image, Text } from '@chakra-ui/react'
+import { Box, Button, Fade, Flex, Image, Text } from '@chakra-ui/react'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
 import React, { useMemo } from 'react'
 
