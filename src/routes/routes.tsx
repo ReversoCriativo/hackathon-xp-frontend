@@ -3,10 +3,11 @@ import {
   Routes as Switch,
   Route,
 } from 'react-router-dom'
+import { NavbarProvider } from '../contexts/NavbarContext'
 import { UserProvider } from '../contexts/UserContext'
 import Home from '../pages/Home'
 import Login from '../pages/Login'
-import Questionns from '../pages/Questions'
+import Questions from '../pages/Questions'
 import ProtectedRoute from './ProtectedRoute'
 
 export default function Routes() {
@@ -20,7 +21,9 @@ export default function Routes() {
             path='/dashboard'
             element={
               <UserProvider>
-                <Questionns />
+                <NavbarProvider>
+                  <Questions />
+                </NavbarProvider>
               </UserProvider>
             }
           />

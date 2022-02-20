@@ -1,28 +1,24 @@
 import {
   Box,
-  Button,
   Center,
-  Container,
   Drawer,
   DrawerBody,
   DrawerContent,
   DrawerOverlay,
-  Flex,
   Spinner,
   Text,
   useDisclosure,
 } from '@chakra-ui/react'
-import { random, range } from 'lodash'
 import { useCallback, useEffect, useState } from 'react'
-import BankCard from '../components/atoms/BankCard'
 import { BasicButton } from '../components/atoms/BasicButton'
 import { Header } from '../components/molecules/Header'
+import { useNavbar } from '../hooks/useNavbar'
 import { useUser } from '../hooks/useUser'
+import Dashboard from './Dashboard'
 
 export default function Questions() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [isCardOn, setIsCardOn] = useState(true)
-
+  const { changeNavlink, navLinkActive } = useNavbar()
   const { isLoading, user } = useUser()
 
   const formatName = useCallback((text: string) => {
@@ -37,23 +33,9 @@ export default function Questions() {
   }, [])
 
   return (
-    <Container maxW='container.lx'>
+    <Box>
       <Header />
-      {!isLoading ? (
-        <Flex gap={5} alignItems={'center'} justifyContent='center'>
-          {range(0, 4).map((_, index) => (
-            <BankCard
-              key={Math.random() + index}
-              imageSrc={
-                'https://logospng.org/download/nubank/logo-nu-nubank-roxo-icon-2048.png'
-              }
-              value={1504.94}
-              onToggle={() => setIsCardOn(!isCardOn)}
-            />
-          ))}
-        </Flex>
-      ) : null}
-      <Button onClick={onOpen}>Abrir o Drawer</Button>
+      <Dashboard />
       <Drawer
         placement={'left'}
         onClose={onClose}
@@ -98,7 +80,10 @@ export default function Questions() {
                   Olá {formatName(user?.name || '')}, o que iremos fazer hoje?
                 </Text>
                 <BasicButton
-                  onClick={onClose}
+                  onClick={() => {
+                    changeNavlink('my-balances')
+                    onClose()
+                  }}
                   h={['40px', '60px', '80px']}
                   bg='#0D0D0D'
                   mb={['47px', '67px']}
@@ -107,7 +92,10 @@ export default function Questions() {
                   Consultar meu saldo em todos os bancos
                 </BasicButton>
                 <BasicButton
-                  onClick={onClose}
+                  onClick={() => {
+                    changeNavlink('my-investments')
+                    onClose()
+                  }}
                   h={['40px', '60px', '80px']}
                   bg='#0D0D0D'
                   mb={['47px', '67px']}
@@ -116,7 +104,10 @@ export default function Questions() {
                   Consultar sobre meus investimentos até o momentos
                 </BasicButton>
                 <BasicButton
-                  onClick={onClose}
+                  onClick={() => {
+                    changeNavlink('invest-now')
+                    onClose()
+                  }}
                   h={['40px', '60px', '80px']}
                   mb={['47px', '67px']}
                   fontSize={['16px', '18px']}
@@ -128,6 +119,6 @@ export default function Questions() {
           </DrawerBody>
         </DrawerContent>
       </Drawer>
-    </Container>
+    </Box>
   )
 }

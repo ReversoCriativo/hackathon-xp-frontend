@@ -25,7 +25,6 @@ export function UserProvider({ children }: UserProviderProps) {
           private: true,
         },
       })
-      console.log(data)
       if (data) {
         setUser(data)
       }
