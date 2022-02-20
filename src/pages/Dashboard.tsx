@@ -19,11 +19,11 @@ import { Header } from '../components/molecules/Header'
 export default function Dashboard() {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const [isCardOn, setIsCardOn] = useState(false)
+  const [isCardOn, setIsCardOn] = useState(true)
 
   useEffect(() => {
     onOpen()
-  }, [])
+  }, []);
 
   return (
     <Container maxW='container.lx'>

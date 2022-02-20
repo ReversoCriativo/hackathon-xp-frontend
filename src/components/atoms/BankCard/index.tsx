@@ -6,7 +6,7 @@ interface Props {
   on: boolean
   value: number
   onToggle: () => void
-	imageSrc: string,
+  imageSrc: string
 }
 
 export default function BankCard({ on, value, onToggle, imageSrc }: Props) {
@@ -18,28 +18,35 @@ export default function BankCard({ on, value, onToggle, imageSrc }: Props) {
   }, [value])
 
   return (
-    <Flex bg={'#0D0D0D'} px={30} pt={15} width={'20%'} flexDir={'column'} borderRadius={6}>
+    <Flex
+      bg={'#0D0D0D'}
+      px={30}
+      pt={15}
+      width={'20%'}
+      flexDir={'column'}
+      borderRadius={6}
+    >
       <Flex justifyContent={'space-between'} alignItems={'center'}>
-        <Image
-          src={imageSrc}
-          maxW={50}
-          maxH={60}
-        />
+        <Image src={imageSrc} maxW={50} maxH={60} />
         <Button p={0} onClick={onToggle}>
           {!on ? <FiEye size={20} /> : <FiEyeOff size={20} />}
         </Button>
       </Flex>
-      <Flex flexDir={'column'} >
+      <Flex flexDir={'column'}>
         <Text color='#737373' fontSize={18} mt={18}>
           Saldo disponível:
         </Text>
 
         <Box pt={5} pb={9}>
-          <Fade in={on}>
-            <Text color='#fff' fontWeight={'bold'} fontSize={32}>
-              {moneyCurrency}
-            </Text>
-          </Fade>
+          {on ? (
+            <Fade in={on}>
+              <Text color='#fff' fontWeight={'bold'} fontSize={32}>
+                {moneyCurrency}
+              </Text>
+            </Fade>
+          ) : (
+            <Box backgroundColor={'#141414'} p={7} />
+          )}
         </Box>
       </Flex>
     </Flex>
