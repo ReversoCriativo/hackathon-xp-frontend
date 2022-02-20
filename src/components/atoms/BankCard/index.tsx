@@ -45,7 +45,7 @@ export default function BankCard({ value, onToggle, imageSrc }: Props) {
               </Text>
             </Fade>
           ) : (
-            <Box backgroundColor={'#141414'} p={6} />
+            <Box backgroundColor={'#141414'} p={'24px'} />
           )}
         </Box>
       </Flex>
