@@ -7,14 +7,11 @@ import {
   DrawerBody,
   DrawerContent,
   DrawerOverlay,
-  Flex,
   Spinner,
   Text,
   useDisclosure,
 } from '@chakra-ui/react'
-import { random, range } from 'lodash'
 import { useCallback, useEffect, useState } from 'react'
-import BankCard from '../components/atoms/BankCard'
 import { BasicButton } from '../components/atoms/BasicButton'
 import { Header } from '../components/molecules/Header'
 import UserBankList from '../components/organisms/UserBankList'
