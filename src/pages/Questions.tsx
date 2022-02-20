@@ -21,7 +21,7 @@ import { useUser } from '../hooks/useUser'
 
 export default function Questions() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [isCardOn, setIsCardOn] = useState(false)
+  const [isCardOn, setIsCardOn] = useState(true)
 
   const { isLoading, user } = useUser()
 
@@ -44,7 +44,6 @@ export default function Questions() {
           {range(0, 4).map((_, index) => (
             <BankCard
               key={Math.random() + index}
-              on={isCardOn}
               imageSrc={
                 'https://logospng.org/download/nubank/logo-nu-nubank-roxo-icon-2048.png'
               }
