@@ -1,11 +1,10 @@
 import { Button, Divider, Flex } from '@chakra-ui/react'
 import { ActiveLink } from '../../atoms/ActiveLink'
 import { FiEye } from 'react-icons/fi'
-import { useNavbar } from '../../../hooks/useNavbar'
+import { useDashboard } from '../../../hooks/useDashboard'
 
 export function Navbar() {
-  const { navLinkActive, changeNavlink } = useNavbar()
-  console.log(navLinkActive)
+  const { navbarSlugActive, changeNavbarSlug } = useDashboard()
   return (
     <Flex
       bg='#0D0D0D'
@@ -17,20 +16,20 @@ export function Navbar() {
       mb='85px'
     >
       <ActiveLink
-        active={navLinkActive === 'my-balances'}
-        onClick={() => changeNavlink('my-balances')}
+        active={navbarSlugActive === 'my-balances'}
+        onClick={() => changeNavbarSlug('my-balances')}
       >
         Meus saldos
       </ActiveLink>
       <ActiveLink
-        active={navLinkActive === 'my-investments'}
-        onClick={() => changeNavlink('my-investments')}
+        active={navbarSlugActive === 'my-investments'}
+        onClick={() => changeNavbarSlug('my-investments')}
       >
         Meus investimentos
       </ActiveLink>
       <ActiveLink
-        active={navLinkActive === 'invest-now'}
-        onClick={() => changeNavlink('invest-now')}
+        active={navbarSlugActive === 'invest-now'}
+        onClick={() => changeNavbarSlug('invest-now')}
       >
         Investir agora
       </ActiveLink>

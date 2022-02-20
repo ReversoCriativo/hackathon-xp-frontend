@@ -3,7 +3,7 @@ import {
   Routes as Switch,
   Route,
 } from 'react-router-dom'
-import { NavbarProvider } from '../contexts/NavbarContext'
+import { DashboardProvider } from '../contexts/DashboardContext'
 import { UserProvider } from '../contexts/UserContext'
 import Home from '../pages/Home'
 import Login from '../pages/Login'
@@ -21,9 +21,9 @@ export default function Routes() {
             path='/dashboard'
             element={
               <UserProvider>
-                <NavbarProvider>
+                <DashboardProvider>
                   <Questions />
-                </NavbarProvider>
+                </DashboardProvider>
               </UserProvider>
             }
           />

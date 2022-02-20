@@ -12,13 +12,13 @@ import {
 import { useCallback, useEffect, useState } from 'react'
 import { BasicButton } from '../components/atoms/BasicButton'
 import { Header } from '../components/molecules/Header'
-import { useNavbar } from '../hooks/useNavbar'
+import { useDashboard } from '../hooks/useDashboard'
 import { useUser } from '../hooks/useUser'
 import Dashboard from './Dashboard'
 
 export default function Questions() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { changeNavlink, navLinkActive } = useNavbar()
+  const { changeNavbarSlug } = useDashboard()
   const { isLoading, user } = useUser()
 
   const formatName = useCallback((text: string) => {
@@ -81,7 +81,7 @@ export default function Questions() {
                 </Text>
                 <BasicButton
                   onClick={() => {
-                    changeNavlink('my-balances')
+                    changeNavbarSlug('my-balances')
                     onClose()
                   }}
                   h={['40px', '60px', '80px']}
@@ -93,7 +93,7 @@ export default function Questions() {
                 </BasicButton>
                 <BasicButton
                   onClick={() => {
-                    changeNavlink('my-investments')
+                    changeNavbarSlug('my-investments')
                     onClose()
                   }}
                   h={['40px', '60px', '80px']}
@@ -105,7 +105,7 @@ export default function Questions() {
                 </BasicButton>
                 <BasicButton
                   onClick={() => {
-                    changeNavlink('invest-now')
+                    changeNavbarSlug('invest-now')
                     onClose()
                   }}
                   h={['40px', '60px', '80px']}
