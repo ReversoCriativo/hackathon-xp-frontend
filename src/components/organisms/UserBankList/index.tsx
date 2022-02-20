@@ -9,7 +9,7 @@ interface Props {
 
 export default function UserBankList({ user }: Props) {
   return (
-    <Flex gap={5} alignItems={'center'} justifyContent='center'>
+    <Flex gap={5} alignItems={'center'} justifyContent='center' width={'100%'} >
       {user.banks.map(({ checking: { balance }, institution: { bankName } }, index) => (
         <BankCard
           key={Math.random() + index}
