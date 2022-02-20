@@ -31,7 +31,6 @@ export default function Dashboard() {
       <Flex gap={5} alignItems={'center'} justifyContent='center'>
         {range(0, 4).map(() => (
           <BankCard
-            on={isCardOn}
             imageSrc={
               'https://logospng.org/download/nubank/logo-nu-nubank-roxo-icon-2048.png'
             }
