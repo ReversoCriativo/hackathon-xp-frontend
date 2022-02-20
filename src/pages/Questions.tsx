@@ -29,9 +29,6 @@ export default function Questions() {
 
   const { getProducts, products } = useInvestments();
 
-
-  console.log("!)))) ALL ", products);
-
   const formatName = useCallback((text: string) => {
     return (
       text.substring(0, 1).toLocaleUpperCase() +
