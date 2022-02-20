@@ -17,6 +17,7 @@ import { useCallback, useEffect, useState } from 'react'
 import BankCard from '../components/atoms/BankCard'
 import { BasicButton } from '../components/atoms/BasicButton'
 import { Header } from '../components/molecules/Header'
+import UserBankList from '../components/organisms/UserBankList'
 import { useUser } from '../hooks/useUser'
 
 export default function Questions() {
@@ -39,20 +40,7 @@ export default function Questions() {
   return (
     <Container maxW='container.lx'>
       <Header />
-      {!isLoading ? (
-        <Flex gap={5} alignItems={'center'} justifyContent='center'>
-          {range(0, 4).map((_, index) => (
-            <BankCard
-              key={Math.random() + index}
-              imageSrc={
-                'https://logospng.org/download/nubank/logo-nu-nubank-roxo-icon-2048.png'
-              }
-              value={1504.94}
-              onToggle={() => setIsCardOn(!isCardOn)}
-            />
-          ))}
-        </Flex>
-      ) : null}
+      {!isLoading && user?.name && <UserBankList user={user} />}
       <Button onClick={onOpen}>Abrir o Drawer</Button>
       <Drawer
         placement={'left'}

@@ -24,7 +24,7 @@ export function UserProvider({ children }: UserProviderProps) {
         headers: {
           private: true,
         },
-      })
+      });
       console.log(data)
       if (data) {
         setUser(data)
@@ -41,7 +41,7 @@ export function UserProvider({ children }: UserProviderProps) {
     const accessToken = localStorage.getItem('accessToken')
     if (accessToken) {
       setAccessToken(accessToken)
-      me()
+      me();
     }
   }, [])
 

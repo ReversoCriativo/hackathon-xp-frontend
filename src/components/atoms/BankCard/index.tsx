@@ -1,14 +1,13 @@
+import React, { useMemo, useState } from 'react'
 import { Box, Button, Fade, Flex, Image, Text } from '@chakra-ui/react'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
-import React, { useMemo, useState } from 'react'
 
 interface Props {
   value: number
-  onToggle: () => void
-  imageSrc: string
+  bankName: string;
 }
 
-export default function BankCard({ value, onToggle, imageSrc }: Props) {
+export default function BankCard({ value, bankName }: Props) {
   const [on, setOn] = useState(true)
   const moneyCurrency = useMemo(() => {
     return new Intl.NumberFormat('pt-br', {
@@ -27,7 +26,10 @@ export default function BankCard({ value, onToggle, imageSrc }: Props) {
       borderRadius={6}
     >
       <Flex justifyContent={'space-between'} alignItems={'center'}>
-        <Image src={imageSrc} maxW={50} maxH={60} />
+        {/* <Image src={imageSrc} maxW={50} maxH={60} /> */}
+        <Text fontSize={32}>
+          {bankName.toUpperCase()}
+        </Text>
         <Button p={0} onClick={() => setOn(!on)}>
           {!on ? <FiEye size={20} /> : <FiEyeOff size={20} />}
         </Button>
