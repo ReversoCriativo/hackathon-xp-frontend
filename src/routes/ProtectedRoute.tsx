@@ -3,7 +3,8 @@ import { useAuth } from '../hooks/useAuth'
 
 function ProtectedRoute() {
   const { authenticated } = useAuth()
-  if (!authenticated) {
+  const accessToken = localStorage.getItem('accessToken')
+  if (!authenticated && !accessToken) {
     return <Navigate to='/login' />
   }
   return <Outlet />

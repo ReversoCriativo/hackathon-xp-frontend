@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import {
   AuthContextProps,
   AuthProviderProps,
@@ -12,6 +12,13 @@ export const AuthContext = createContext<AuthContextProps>(
 export function AuthProvider({ children }: AuthProviderProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [authenticated, setAuthenticated] = useState(false)
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken')
+    if (accessToken) {
+      setAuthenticated(true)
+    }
+  }, [])
 
   async function login(name: string) {
     setIsLoading(true)
