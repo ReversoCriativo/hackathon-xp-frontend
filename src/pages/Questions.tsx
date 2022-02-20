@@ -13,6 +13,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { BasicButton } from '../components/atoms/BasicButton'
 import { Header } from '../components/molecules/Header'
 import { useDashboard } from '../hooks/useDashboard'
+import { useInvestments } from '../hooks/useInvestments'
 import { useUser } from '../hooks/useUser'
 import Dashboard from './Dashboard'
 
@@ -20,6 +21,7 @@ export default function Questions() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { changeNavbarSlug } = useDashboard()
   const { isLoading, user } = useUser()
+  const { getProducts } = useInvestments()
 
   const formatName = useCallback((text: string) => {
     return (
@@ -30,6 +32,7 @@ export default function Questions() {
 
   useEffect(() => {
     onOpen()
+    getProducts()
   }, [])
 
   return (

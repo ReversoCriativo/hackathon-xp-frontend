@@ -4,6 +4,7 @@ import {
   Route,
 } from 'react-router-dom'
 import { DashboardProvider } from '../contexts/DashboardContext'
+import { InvestmentsProvider } from '../contexts/Investments'
 import { UserProvider } from '../contexts/UserContext'
 import Home from '../pages/Home'
 import Login from '../pages/Login'
@@ -22,7 +23,9 @@ export default function Routes() {
             element={
               <UserProvider>
                 <DashboardProvider>
-                  <Questions />
+                  <InvestmentsProvider>
+                    <Questions />
+                  </InvestmentsProvider>
                 </DashboardProvider>
               </UserProvider>
             }

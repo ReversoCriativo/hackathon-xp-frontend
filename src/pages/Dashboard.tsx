@@ -1,10 +1,10 @@
-import { Box, Flex, Text } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/react'
 
 import { Navbar } from '../components/molecules/Navbar'
 import { useUser } from '../hooks/useUser'
-import { Balances } from '../components/organisms/Balances'
 import { useCallback } from 'react'
 import { useDashboard } from '../hooks/useDashboard'
+import UserBankList from '../components/organisms/UserBankList'
 
 export default function Dashboard() {
   const { isLoading } = useUser()
@@ -13,7 +13,7 @@ export default function Dashboard() {
 
   const GetDashoboard = useCallback(() => {
     if (navbarSlugActive === 'my-balances') {
-      return <Balances />
+      return <UserBankList user={user} />
     }
     if (navbarSlugActive === 'my-investments') {
       return <Text>Meus Investimentos</Text>
