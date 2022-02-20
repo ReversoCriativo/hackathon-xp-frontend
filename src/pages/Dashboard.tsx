@@ -19,7 +19,7 @@ import { Header } from '../components/molecules/Header'
 export default function Dashboard() {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const [isCardOn, setIsCardOn ] = useState(false);
+  const [isCardOn, setIsCardOn] = useState(false)
 
   useEffect(() => {
     onOpen()
@@ -30,7 +30,14 @@ export default function Dashboard() {
       <Header />
       <Flex gap={5} alignItems={'center'} justifyContent='center'>
         {range(0, 4).map(() => (
-          <BankCard on={isCardOn} value={1504.94} onToggle={() => setIsCardOn(!isCardOn)} />
+          <BankCard
+            on={isCardOn}
+            imageSrc={
+              'https://logospng.org/download/nubank/logo-nu-nubank-roxo-icon-2048.png'
+            }
+            value={1504.94}
+            onToggle={() => setIsCardOn(!isCardOn)}
+          />
         ))}
       </Flex>
       <Drawer

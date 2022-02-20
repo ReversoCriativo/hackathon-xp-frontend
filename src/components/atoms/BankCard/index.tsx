@@ -6,9 +6,10 @@ interface Props {
   on: boolean
   value: number
   onToggle: () => void
+	imageSrc: string,
 }
 
-export default function BankCard({ on, value, onToggle }: Props) {
+export default function BankCard({ on, value, onToggle, imageSrc }: Props) {
   const moneyCurrency = useMemo(() => {
     return new Intl.NumberFormat('pt-br', {
       style: 'currency',
@@ -20,9 +21,7 @@ export default function BankCard({ on, value, onToggle }: Props) {
     <Flex bg={'#0D0D0D'} px={30} pt={15} width={'20%'} flexDir={'column'}>
       <Flex justifyContent={'space-between'} alignItems={'center'}>
         <Image
-          src={
-            'https://logospng.org/download/nubank/logo-nu-nubank-roxo-icon-2048.png'
-          }
+          src={imageSrc}
           maxW={50}
           maxH={60}
         />
