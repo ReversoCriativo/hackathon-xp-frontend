@@ -95,7 +95,7 @@ export default function Questions() {
                   fontSize={['22px', '28px', '36px']}
                   mb={['50px', '60px', '80px']}
                 >
-                  Olá {formatName(user.name)}, o que iremos fazer hoje?
+                  Olá {formatName(user?.name || '')}, o que iremos fazer hoje?
                 </Text>
                 <BasicButton
                   onClick={onClose}
