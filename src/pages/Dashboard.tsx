@@ -7,6 +7,7 @@ import { useDashboard } from '../hooks/useDashboard'
 import UserBankList from '../components/organisms/UserBankList'
 import { UserInvestmentsList } from '../components/organisms/UserInvestimentsList'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
+import Invest from '../components/organisms/Invest'
 
 export default function Dashboard() {
   const { isLoading } = useUser()
@@ -22,7 +23,7 @@ export default function Dashboard() {
       return <UserInvestmentsList />
     }
     if (navbarSlugActive === 'invest-now') {
-      return <Text>Investir agora</Text>
+      return <Invest />
     }
   }, [user, navbarSlugActive, lastTabActive])
 
