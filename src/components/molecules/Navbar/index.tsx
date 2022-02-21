@@ -36,16 +36,20 @@ export function Navbar({ leftTabComponent }: IProps) {
       >
         Investir agora
       </ActiveLink>
-      <Divider
-        orientation='vertical'
-        m='5px 0'
-        p={'20px 0'}
-        h='100%'
-        bg='#9e9e9e'
-      />
-      <Flex alignItems={'center'} justifyContent={'flex-start'}>
-        {leftTabComponent}
-      </Flex>
+      {leftTabComponent && (
+        <>
+          <Divider
+            orientation='vertical'
+            m='5px 0'
+            p={'20px 0'}
+            h='100%'
+            bg='#9e9e9e'
+          />
+          <Flex alignItems={'center'} justifyContent={'flex-start'}>
+            {leftTabComponent}
+          </Flex>
+        </>
+      )}
     </Flex>
   )
 }

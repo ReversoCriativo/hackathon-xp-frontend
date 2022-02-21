@@ -2,19 +2,30 @@ import { Box, Button, Center, Flex, Image, Text } from '@chakra-ui/react'
 
 import { Navbar } from '../components/molecules/Navbar'
 import { useUser } from '../hooks/useUser'
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { useDashboard } from '../hooks/useDashboard'
 import UserBankList from '../components/organisms/UserBankList'
 import { UserInvestmentsList } from '../components/organisms/UserInvestmentsList'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
 import Invest from '../components/organisms/Invest'
 import investmentIMG from '../assets/investment.svg'
+import { sumBy } from 'lodash'
 
 export default function Dashboard() {
   const { isLoading } = useUser()
   const { navbarSlugActive } = useDashboard()
-  const { user } = useUser()
+  const { user, aggregatedInvestments } = useUser()
   const [lastTabActive, setLastTabActive] = useState(false)
+
+  const investmentsSum = useMemo(
+    () =>
+      new Intl.NumberFormat('pt-br', {
+        style: 'currency',
+        currency: 'BRL',
+      }).format(sumBy(aggregatedInvestments, 'total')),
+
+    [aggregatedInvestments]
+  )
 
   const GetDashoboard = useCallback(() => {
     if (navbarSlugActive === 'my-balances') {
@@ -65,7 +76,7 @@ export default function Dashboard() {
               </Text>
               {lastTabActive ? (
                 <Text fontSize='18px' fontWeight={700}>
-                  R$ 1515,10
+                  {investmentsSum}
                 </Text>
               ) : (
                 <Box w='120%' h='30px' bg='#141414' />
@@ -93,7 +104,7 @@ export default function Dashboard() {
       )
     }
     if (navbarSlugActive === 'invest-now') {
-      return <></>
+      return undefined;
     }
   }, [navbarSlugActive, lastTabActive])
 

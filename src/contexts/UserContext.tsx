@@ -1,7 +1,8 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, useEffect, useMemo, useState } from 'react'
 import { useAuth } from '../hooks/useAuth'
-import { map } from 'lodash'
+import { groupBy, map, sumBy } from 'lodash'
 import {
+  IAggregator,
   IBank,
   IInvestment,
   UserContextProps,
@@ -9,6 +10,7 @@ import {
   UserProviderProps,
 } from '../interfaces/User'
 import api from '../services/api'
+import { InvestmentTypeTranslate } from '../components/organisms/UserInvestmentsList'
 
 export const UserContext = createContext<UserContextProps>(
   {} as UserContextProps
@@ -44,6 +46,36 @@ export function UserProvider({ children }: UserProviderProps) {
     }
   }
 
+  const investmentAggregator = useMemo((): IAggregator[] => {
+    const result = [] as any
+    investments.forEach((investment) => {
+      for (const key of Object.keys(investment)) {
+        result.push({
+          type: String(
+            (InvestmentTypeTranslate as any)[key] || key.toUpperCase()
+          ),
+          total: sumBy(investment[key], 'value'),
+        })
+      }
+    })
+    return result
+  }, [investments])
+
+  const aggregatorByAllBanks = useMemo(() => {
+    const aggregated = []
+
+    const groupedByType = groupBy(investmentAggregator, 'type')
+
+    for (const key of Object.keys(groupedByType)) {
+      aggregated.push({
+        type: key,
+        total: sumBy(groupedByType[key], 'total'),
+      })
+    }
+
+    return aggregated
+  }, [investmentAggregator])
+
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken')
     if (accessToken) {
@@ -54,7 +86,7 @@ export function UserProvider({ children }: UserProviderProps) {
 
   return (
     <UserContext.Provider
-      value={{ accessToken, user, isLoading, me, investments }}
+      value={{ accessToken, user, isLoading, me, investments, aggregatedInvestments: aggregatorByAllBanks }}
     >
       {children}
     </UserContext.Provider>

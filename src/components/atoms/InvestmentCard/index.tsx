@@ -1,6 +1,7 @@
 import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { useMemo, useState } from 'react'
 import { FaArrowDown, FaArrowUp } from 'react-icons/fa'
+import { BasicButton } from '../BasicButton'
 
 interface Props {
   investment: {
@@ -49,9 +50,6 @@ export function InvestmentCard({ investment }: Props) {
             <Text fontSize='32px' fontWeight={700}>
               {moneyCurrency}
             </Text>
-            {/* <Text color='#9E9E9E' fontSize='24px'>
-                  {investment.bankId?.toLocaleUpperCase()}
-                </Text> */}
           </Flex>
         </Box>
       ) : null}

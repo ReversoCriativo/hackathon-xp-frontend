@@ -2,6 +2,7 @@ import React, { useMemo } from 'react'
 import { Divider, Flex, Text } from '@chakra-ui/react'
 import { IBrokerProduct } from '../../../contexts/Investments'
 import { InvestmentTypeTranslate } from '../../organisms/UserInvestmentsList'
+import { BasicButton } from '../../atoms/BasicButton'
 
 interface IProps extends IBrokerProduct {
   investorProfile: string
@@ -91,6 +92,11 @@ export default function InvestmentProductCard({
 
         <Text fontSize={18}>{formatted}</Text>
       </Flex>
+
+
+      <BasicButton width={'100%'} mt={10} onClick={() => alert("Em desenvolvimento")}>
+        Investir
+      </BasicButton>
     </Flex>
   )
 }

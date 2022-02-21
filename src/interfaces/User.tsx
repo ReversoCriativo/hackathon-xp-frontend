@@ -38,6 +38,10 @@ export interface UserProps {
   bornDate: string
   banks: IBank[]
 }
+export interface IAggregator {
+  type: string
+  total: number
+}
 
 export interface UserContextProps {
   accessToken: string
@@ -45,4 +49,5 @@ export interface UserContextProps {
   user: UserProps
   isLoading: boolean
   me: () => Promise<void>
+  aggregatedInvestments: IAggregator[];
 }
