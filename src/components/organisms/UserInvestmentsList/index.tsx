@@ -4,12 +4,10 @@ import { useMemo } from 'react'
 import { useUser } from '../../../hooks/useUser'
 import { InvestmentCard } from '../../atoms/InvestmentCard'
 
-
 export interface IAggregator {
-  type: string;
-  total: number;
+  type: string
+  total: number
 }
-
 
 export const InvestmentTypeTranslate = {
   stocks: 'Ações',
@@ -26,28 +24,29 @@ export function UserInvestmentsList() {
     investments.forEach((investment) => {
       for (const key of Object.keys(investment)) {
         result.push({
-          type: String((InvestmentTypeTranslate as any)[key] || key.toUpperCase()),
+          type: String(
+            (InvestmentTypeTranslate as any)[key] || key.toUpperCase()
+          ),
           total: sumBy(investment[key], 'value'),
         })
       }
     })
     return result
-  }, [investments]);
-
+  }, [investments])
 
   const aggregatorByAllBanks = useMemo(() => {
-    const aggregated = [];
+    const aggregated = []
 
-    const groupedByType = groupBy(investmentAggregator, 'type');
+    const groupedByType = groupBy(investmentAggregator, 'type')
 
-    for(const key of Object.keys(groupedByType)) {
+    for (const key of Object.keys(groupedByType)) {
       aggregated.push({
         type: key,
-        total: sumBy(groupedByType[key], 'total')
-      });
+        total: sumBy(groupedByType[key], 'total'),
+      })
     }
 
-    return aggregated;
+    return aggregated
   }, [investmentAggregator])
 
   return (
@@ -58,7 +57,7 @@ export function UserInvestmentsList() {
       alignItems='flex-start'
       flexFlow='wrap'
     >
-      {aggregatorByAllBanks.map((investment, index) => (
+      {aggregatorByAllBanks?.map((investment, index) => (
         <InvestmentCard key={Math.random() + index} investment={investment} />
       ))}
     </Flex>
