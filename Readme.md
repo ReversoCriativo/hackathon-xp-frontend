@@ -34,3 +34,6 @@
 ![Application](https://raw.githubusercontent.com/ReversoCriativo/hackathon-xp/master/src/assets/prints/Screenshot_1.png)
 ![Application](https://raw.githubusercontent.com/ReversoCriativo/hackathon-xp/master/src/assets/prints/Screenshot_2.png)
 ![Application](https://raw.githubusercontent.com/ReversoCriativo/hackathon-xp/master/src/assets/prints/Screenshot_3.png)
+![Application](https://raw.githubusercontent.com/ReversoCriativo/hackathon-xp/master/src/assets/prints/Screenshot_4.png)
+![Application](https://raw.githubusercontent.com/ReversoCriativo/hackathon-xp/master/src/assets/prints/Screenshot_5.png)
+![Application](https://raw.githubusercontent.com/ReversoCriativo/hackathon-xp/master/src/assets/prints/Screenshot_6.png)
