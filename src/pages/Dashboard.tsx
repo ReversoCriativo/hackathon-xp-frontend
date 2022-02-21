@@ -5,6 +5,7 @@ import { useUser } from '../hooks/useUser'
 import { useCallback } from 'react'
 import { useDashboard } from '../hooks/useDashboard'
 import UserBankList from '../components/organisms/UserBankList'
+import { UserInvestmentsList } from '../components/organisms/UserInvestimentsList'
 
 export default function Dashboard() {
   const { isLoading } = useUser()
@@ -16,7 +17,7 @@ export default function Dashboard() {
       return <UserBankList user={user} />
     }
     if (navbarSlugActive === 'my-investments') {
-      return <Text>Meus Investimentos</Text>
+      return <UserInvestmentsList />
     }
     if (navbarSlugActive === 'invest-now') {
       return <Text>Investir agora</Text>

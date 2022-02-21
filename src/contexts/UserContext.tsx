@@ -1,6 +1,9 @@
 import { createContext, useEffect, useState } from 'react'
 import { useAuth } from '../hooks/useAuth'
+import { map } from 'lodash'
 import {
+  IBank,
+  IInvestment,
   UserContextProps,
   UserProps,
   UserProviderProps,
@@ -15,6 +18,9 @@ export function UserProvider({ children }: UserProviderProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [accessToken, setAccessToken] = useState('')
   const [user, setUser] = useState({} as UserProps)
+  const [investments, setInvestments] = useState(
+    [] as Record<string, IInvestment[]>[]
+  )
   const { logout } = useAuth()
 
   async function me() {
@@ -26,6 +32,8 @@ export function UserProvider({ children }: UserProviderProps) {
         },
       })
       if (data) {
+        const investments = map(data.banks, 'investments')
+        setInvestments(investments)
         setUser(data)
       }
     } catch (error) {
@@ -45,7 +53,9 @@ export function UserProvider({ children }: UserProviderProps) {
   }, [])
 
   return (
-    <UserContext.Provider value={{ accessToken, user, isLoading, me }}>
+    <UserContext.Provider
+      value={{ accessToken, user, isLoading, me, investments }}
+    >
       {children}
     </UserContext.Provider>
   )
