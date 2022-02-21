@@ -3,7 +3,7 @@ import { ActiveLink } from '../../atoms/ActiveLink'
 import { useDashboard } from '../../../hooks/useDashboard'
 
 export interface IProps {
-  leftTabComponent?: JSX.Element;
+  leftTabComponent?: JSX.Element
 }
 
 export function Navbar({ leftTabComponent }: IProps) {
@@ -13,7 +13,7 @@ export function Navbar({ leftTabComponent }: IProps) {
       bg='#0D0D0D'
       borderRadius='6px'
       w='90%'
-      justifyContent='space-between'
+      justifyContent='space-evenly'
       p='10px 30px'
       m='0 140px'
       mb='85px'

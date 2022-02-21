@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 import { Divider, Flex, Text } from '@chakra-ui/react'
 import { IBrokerProduct } from '../../../contexts/Investments'
-import { InvestmentTypeTranslate } from '../../organisms/UserInvestimentsList'
+import { InvestmentTypeTranslate } from '../../organisms/UserInvestmentsList'
 
 interface IProps extends IBrokerProduct {
   investorProfile: string

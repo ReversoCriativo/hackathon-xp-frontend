@@ -1,13 +1,14 @@
-import { Box, Button, Text } from '@chakra-ui/react'
+import { Box, Button, Center, Flex, Image, Text } from '@chakra-ui/react'
 
 import { Navbar } from '../components/molecules/Navbar'
 import { useUser } from '../hooks/useUser'
 import { useCallback, useState } from 'react'
 import { useDashboard } from '../hooks/useDashboard'
 import UserBankList from '../components/organisms/UserBankList'
-import { UserInvestmentsList } from '../components/organisms/UserInvestimentsList'
+import { UserInvestmentsList } from '../components/organisms/UserInvestmentsList'
 import { FiEye, FiEyeOff } from 'react-icons/fi'
 import Invest from '../components/organisms/Invest'
+import investmentIMG from '../assets/investment.svg'
 
 export default function Dashboard() {
   const { isLoading } = useUser()
@@ -52,7 +53,44 @@ export default function Dashboard() {
     }
 
     if (navbarSlugActive === 'my-investments') {
-      return <></>
+      return (
+        <>
+          <Center mr='20px' w='36px'>
+            <Image src={investmentIMG} />
+          </Center>
+          <Flex>
+            <Box>
+              <Text color='#9E9E9E' fontSize='12px' mb='1px'>
+                Total investido
+              </Text>
+              {lastTabActive ? (
+                <Text fontSize='18px' fontWeight={700}>
+                  R$ 1515,10
+                </Text>
+              ) : (
+                <Box w='120%' h='30px' bg='#141414' />
+              )}
+            </Box>
+          </Flex>
+          <Center ml='100px'>
+            {lastTabActive ? (
+              <FiEyeOff
+                fontSize={22}
+                style={{ marginRight: '15px' }}
+                cursor='pointer'
+                onClick={() => setLastTabActive(!lastTabActive)}
+              />
+            ) : (
+              <FiEye
+                fontSize={22}
+                style={{ marginRight: '15px' }}
+                cursor='pointer'
+                onClick={() => setLastTabActive(!lastTabActive)}
+              />
+            )}
+          </Center>
+        </>
+      )
     }
     if (navbarSlugActive === 'invest-now') {
       return <></>
