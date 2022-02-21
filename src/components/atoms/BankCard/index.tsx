@@ -5,10 +5,11 @@ import { FiEye, FiEyeOff } from 'react-icons/fi'
 interface Props {
   value: number
   bankName: string;
+  on: boolean;
 }
 
-export default function BankCard({ value, bankName }: Props) {
-  const [on, setOn] = useState(true)
+export default function BankCard({ value, bankName, on }: Props) {
+
   const moneyCurrency = useMemo(() => {
     return new Intl.NumberFormat('pt-br', {
       style: 'currency',
@@ -30,9 +31,9 @@ export default function BankCard({ value, bankName }: Props) {
         <Text fontSize={32}>
           {bankName.toUpperCase()}
         </Text>
-        <Button p={0} onClick={() => setOn(!on)}>
+        {/* <Button p={0} onClick={() => setVisible(!visible)}>
           {!on ? <FiEye size={20} /> : <FiEyeOff size={20} />}
-        </Button>
+        </Button> */}
       </Flex>
       <Flex flexDir={'column'}>
         <Text color='#737373' fontSize={18} mt={18}>

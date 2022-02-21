@@ -1,9 +1,12 @@
 import { Button, Divider, Flex } from '@chakra-ui/react'
 import { ActiveLink } from '../../atoms/ActiveLink'
-import { FiEye } from 'react-icons/fi'
 import { useDashboard } from '../../../hooks/useDashboard'
 
-export function Navbar() {
+export interface IProps {
+  leftTabComponent?: JSX.Element;
+}
+
+export function Navbar({ leftTabComponent }: IProps) {
   const { navbarSlugActive, changeNavbarSlug } = useDashboard()
   return (
     <Flex
@@ -40,15 +43,9 @@ export function Navbar() {
         h='100%'
         bg='#9e9e9e'
       />
-      <Button
-        variant='ghost'
-        _hover={{
-          opacity: 0.7,
-        }}
-      >
-        <FiEye fontSize={22} style={{ marginRight: '15px' }} />
-        Esconder todos os saldos
-      </Button>
+      <Flex alignItems={'center'} justifyContent={'flex-start'}>
+        {leftTabComponent}
+      </Flex>
     </Flex>
   )
 }
