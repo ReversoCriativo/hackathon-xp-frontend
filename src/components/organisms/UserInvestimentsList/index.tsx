@@ -1,27 +1,54 @@
 import { Flex } from '@chakra-ui/react'
-import { sumBy } from 'lodash'
+import { groupBy, sumBy } from 'lodash'
 import { useMemo } from 'react'
 import { useUser } from '../../../hooks/useUser'
 import { InvestmentCard } from '../../atoms/InvestmentCard'
 
+
+export interface IAggregator {
+  type: string;
+  total: number;
+}
+
+
+export const InvestmentTypeTranslate = {
+  stocks: 'Ações',
+  investmentFunds: 'Fundos de investimento',
+  savingsAccount: 'Conta poupança',
+  privatePension: 'Previdência privada',
+}
+
 export function UserInvestmentsList() {
   const { investments } = useUser()
 
-  const investmentAggregator = useMemo((): Array<{
-    type: string
-    total: number
-  }> => {
+  const investmentAggregator = useMemo((): IAggregator[] => {
     const result = [] as any
     investments.forEach((investment) => {
       for (const key of Object.keys(investment)) {
         result.push({
-          type: key,
+          type: String((InvestmentTypeTranslate as any)[key] || key.toUpperCase()),
           total: sumBy(investment[key], 'value'),
         })
       }
     })
     return result
-  }, [investments])
+  }, [investments]);
+
+
+  const aggregatorByAllBanks = useMemo(() => {
+    const aggregated = [];
+
+    const groupedByType = groupBy(investmentAggregator, 'type');
+
+    for(const key of Object.keys(groupedByType)) {
+      aggregated.push({
+        type: key,
+        total: sumBy(groupedByType[key], 'total')
+      });
+    }
+
+    return aggregated;
+  }, [investmentAggregator])
 
   return (
     <Flex
@@ -31,7 +58,7 @@ export function UserInvestmentsList() {
       alignItems='flex-start'
       flexFlow='wrap'
     >
-      {investmentAggregator.map((investment, index) => (
+      {aggregatorByAllBanks.map((investment, index) => (
         <InvestmentCard key={Math.random() + index} investment={investment} />
       ))}
     </Flex>

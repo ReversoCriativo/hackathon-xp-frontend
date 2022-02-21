@@ -28,7 +28,7 @@ export interface IBank {
   startDate: string
   institution: IBankInstitution
   checking: IChecking
-  investiments?: Record<string, IInvestment[]>
+  investments?: Record<string, IInvestment[]>
 }
 
 export interface UserProps {
